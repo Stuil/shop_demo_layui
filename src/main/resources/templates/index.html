@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>系统管理</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">管理系统</div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                   <img src="../img/headImg.jpg" class="layui-nav-img">
+                    [[${sysUser.userName}]]
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/detail">基本资料</a></dd>
+                   <!-- <dd><a href="">安全设置</a></dd>-->
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="#" onclick="loginOut()">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">列表展示</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/user/userList" target="iframeMain">列表展示</a></dd>
+                        <dd><a href="/user/listInfo" target="iframeMain">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">列表展示</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/user/userList" target="iframeMain">列表展示</a></dd>
+                        <dd><a href="/user/listInfo" target="iframeMain">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!--src，主页面的默认的页面路径，name="iframeMain"内嵌设置-->
+        <iframe src="/user/userList" frameborder="0" class="layadmin-iframe" name="iframeMain"
+                style="width: 100%; height:100%;"></iframe>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © 版权所有
+    </div>
+</div>
+</body>
+<script src="../layui/layui.all.js"></script>
+<script src="../jquery-1.11.1.min.js"></script>
+<script>
+    function loginOut() {
+        // 确认弹框   退出
+        layer.confirm('确认退出?', {icon: 3, title:'提示'}, function(index){
+            window.location.href="/loginOut";
+        });
+    }
+</script>
+</html>

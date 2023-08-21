@@ -1,0 +1,88 @@
+server:
+  servlet:
+    context-path: /
+  port: 9961
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: abc123
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+    enabled: true
+
+  ##邮箱服务器地址
+  ##QQ smtp.qq.com
+  ##sina smtp.sina.cn
+  ##aliyun smtp.aliyun.com
+  ##163 smtp.163.com
+  mail:
+    #协议
+    protocol: smtps
+    # 邮箱服务器地址
+    host: smtp.qq.com
+    # 要发送的邮箱
+    username: 1634829010@qq.com
+    # 授权码  注意：不是密码
+    password: kcupcvkulugxehad
+    # 编码格式
+    default-encoding: utf-8
+    # 发送者   可以与username一致
+    from: 1634829010@qq.com
+    #  端口  465或994  具体查阅官方文档
+    port: 465
+
+      # 热加载
+      #devtools:
+      #restart:
+    #热部署生效
+    #  enabled: true
+    #  #设置重启的目录，添加那个目录的文件需要restart
+    #   additional-paths: src/main/java
+    #    #排除那个目录的文件不需要restart
+    #  additional-exclude: static/**,public/**
+
+  #    #classpath目录下的WEB-INF文件夹内容修改不重启
+  #    exclude: com
+
+
+##############  mybatis-plus #############
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+
+
+webParme:
+  emailEnable: true
+
+myPricvateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDH70nHOL5ibAX9pl0tGiIV50ybDV1PkZvLp6XGhB/QPLYJdTIl40h0Up03ShfoQTjm8j9Gdqul9q2Yz2vB5xsO7jry6RsQhtrRspJkdRjuPY8zeMKcDVv4Rf4uNLmDLRpbJJ6TaxG6c1sVbX0M2UO/p+VXKWtSgUcS9QV2syG3JfoXlcIDEasSFH99ZnlEtqOLjcePTJjK3NxZiygiFQz51sDmMezwf4M27PPZM/8bvvAQd+bGj4/1yzmj8LKUt74FAhx2FPPhlstIaI5q+vOWZ0sJ3VqMK0FZeidhtKX9oSY9alltcaq4Vs+8mz9a9BSKZ3WdvZw4TIFPyggk1pZRAgMBAAECggEBAIXxD+swX5NOLSFFz8xEYqtr3k1NwcJpmQbxlESPBUUbNxTU97icMFEFe5+ruqJ092r4xV0uaUXxIVFrPBSV//GbtdBATEphHb04NYypSf9pLENeVnn3FTMZqPRJjDKOB8chnD7Ejwbq+w064Xi3IQUHtMQU0npec0AG+BcSYLbxv+Mptm1t0hzNfLo1gRZCnb0Vmv1JhzHUDfdnHmiWm+HzJWMxZf+gPl+5UOqu8M5DSZWy4abdGot+JS/zxErz8ubEqqP9rGLM2ZbNjNI+RccmPx6OgZmivsLZu/N7Q7fxaHrf1aWcQB3poZkL3jJtzejhhw88ivMxOzhDfgG9EEECgYEA/2PPa+y+JwOpJjdL1DkiG50RZ+8EdmSXDEUy4wUQG64WJZ5UuHVsn4mGjwhkgTRgzoPeuQDFSzs27uz72sPsDPklBlGitRe75tzMjuhJjfdAJ24UiaLyT2z5KJIOh+cH7c/TAXT3U2mJlbgEC5pA2ncyCfC5ikpU8aF6syB1jgkCgYEAyGmQIsUPs2kDrK3QjSbwncl80nO8zKlpnurmMSmDuV6mVMXnPRe4zFHIasBbXoD/Di3x2eMFbNLUzK6W62ceC9bD6yL4IRVzGi6c5HN8WrQ7IZkavklmJJECp8YhvwcraDQq/MTY1gtkwnK8rNOz3EV8H/hx8CvCr3el6WE12AkCgYEAx8sHjADrSY49l94Ofnoryrp30X1VWmGbIUhJZPyi+2SXgtp4oM2MKsrl76O7LLETQrw7UzPdJNuwP/45kY1Qb13Br03SIiXtI9B8Xxgt4tgY4j/l5T8KnUQ9L5YDtCHzPAInqq4chq67qdsJnyIPtlklVk1yeVNpXJbdbKDqFjECgYAKujvQ4KN6gwCDWbp0E8WFbKeVzEQq4Faa/w/bSdGXNo3Is98w0fg+V5JWxH0fjeAZLjRn6VL9BDwHyMCjUR22nIRYLcMCYleK6zvSrqvVXxhbMArSbLNe+bQeruhXhVa5eTFj3lWM/4chMWsQBTT3cXC3dWED7hO5uLnUyDNNoQKBgFYxCQc9X0Bct2/XpLvpsfCXT/uq0VrNl+DXru9Rd1v/+ia9rcFxbmZF8jQydv7QTSog47hMheO8RtpJA0wHJA09cqe3x6xC/k2hXGC1V1KW6NktRB0N7flBqI4K1hWVfrimHvSAcVpzQk0wzUyIzvzAkVKyZAvYyhcXmwaN1BZO
+pubKeySpdb: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvyR4jZYV5/ph6Mz8dySVHqGPZfo5zHlws7U9Aigp6TfuLq+8WgUxt+AerFo8yl6TVd2RVMMfLZAcwyifPp3N6Ru+M+wRk7ZiSjmJtohfqAYnO0Ol7hjQqjhvtOEKz5TqNpyl6uJPfvZzbamdmxjY7W3ndAfB115qOlyO/VOxQtcP4O85poqOSB0/tzcBIsKfD+QgpvfxaOsa9oHpI0yJ1Mmo2XEh9jvwPUYlM3aqdPHpI916/2ATISXPdzXbCcbnGy569e/BUBwVCD6NmkP69/R1augiJRmWxQynXoE/DmCjwcfdf0b3+Neh5VnJstTb/x5MLX4GCK261+NO8ghEJwIDAQAB
+
+ESB:
+  host: http://10.3.201.41 # ESB测试地址
+  #host: http://esb.dyna888.com # ESB生产地址
+  port: 8011
